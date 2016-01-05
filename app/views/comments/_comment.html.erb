@@ -1,0 +1,10 @@
+
+<tr>
+  <td><strong><%= comment.user.email %></strong></td><br>
+  <td>     <%= comment.comment %></td>
+  <%= button_to 'Rate', comment_rate_path(comment), method: :get %>
+
+
+  <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+  <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

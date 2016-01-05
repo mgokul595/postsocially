@@ -1,0 +1,36 @@
+
+<strong><h1>Ratings:</h1></strong>
+
+<% if @ratings.any? %>
+<table id = 'ratings'>
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Rating</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% @ratings.each do |rate| %>
+      <tr><td><%= rate.user.email %></td>
+      <td><center><%= rate.star %></center></td></tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+    Not yet Rated!
+<% end %>
+
+<br><br>
+<%= form_for @comment, url: add_comment_rate_path(@comment) do |f|  %>
+    <% (1..5).each do |rating| %>
+        <%= radio_button_tag "rate", rating %>
+        <%= rating %>
+
+    <% end %>
+
+    <%= f.submit('Rate') %>
+<% end %>
+
+<%= link_to 'Back', post_path(@comment.post) %>
+

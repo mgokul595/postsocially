@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="SQLite -" uuid="26989126-4cb1-465f-9cb9-e9ba48438e47">
+      <secret-storage>master_key</secret-storage>
+    </data-source>
+    <data-source name="SQLite - [2]" uuid="279f41d9-f104-4cea-b87d-cbfd446d7583">
+      <secret-storage>master_key</secret-storage>
+    </data-source>
+    <data-source name="Rails Task4: test" uuid="b376368c-ca74-4cf2-8a84-aa9701e57ea6" />
+    <data-source name="Rails Task4: development" uuid="2bd2d7c9-7542-47ab-b775-2747d0e8c37e">
+      <auth-required>false</auth-required>
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,3 @@
+
+collection @topics
+attribute :name

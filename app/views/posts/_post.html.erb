@@ -1,0 +1,20 @@
+
+      <tr>
+        <td><td>
+        <%= post.name %> (
+        <% if post.topic %>
+            <%= post.topic.name %> )
+        <% end %> </td></td>
+
+        <td><td><%= post.user.email %></td></td>
+        <td><td><%= post.message %></td></td>
+        <td><td><% if current_user.posts.exists?(post) %> Read <% else %> Unread <%end %></td></td>
+        <td> - <strong> <%= post.comments.count %> Comment(s)</strong></td>
+
+        <td><td><td><td><%= link_to 'Show', post%></td></td></td></td>
+        <td><td><%= link_to 'Edit', edit_post_path(post) %></td></td>
+        <td><td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td></td>
+      </tr>
+
+
+

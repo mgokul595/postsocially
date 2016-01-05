@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<div id='ajax_loader' style="position: absolute; left: 50%; top: 50%; display: none;">
+  <%= image_tag "ajax-loader.gif" %>
+
+</div>
+
+<script>
+
+    $(document).ajaxStop(function(){
+      $("#ajax_loader").hide();
+    });
+    $(document).ajaxStart(function(){
+      $("#ajax_loader").show();
+    });
+
+</script>
+
+<h1>Listing Posts</h1>
+<% if not @topic %>
+<label><h3>Filter by date: </h3></label>
+<form action="/posts" method="GET">
+  <label> From: </label>
+  <input type = "date", style="border-image: round", name="from">
+  <label> To: </label>
+  <input type = "date", style="border-image: round", name="to">
+
+  <input type=submit value="Submit Details">
+</form>
+<br>
+<% end %>
+<%= will_paginate %>
+
+<table id = "post_table">
+  <thead>
+  <tr>
+    <th><th>Name</th></th>
+    <th><th>Author</th></th>
+    <th><th>Message</th></th>
+    <th><th>Status</th></th>
+    <th colspan="4"></th>
+  </tr>
+  </thead>
+  <tbody>
+    <%= render @posts %>
+  </tbody>
+</table>
+
+<br>
+
+
+<% if @topic %>
+    <%= link_to 'New Post', "#", id: "new_post" %>|
+      <section id = "new_post_section">
+          <%= render 'form' %>
+      </section>
+    <%= link_to 'Back to Topics', topic_path(@topic) %>
+<% else %>
+    <% link_to 'New Post', new_post_path %>
+<% end %>
+
+<%= will_paginate %>
+

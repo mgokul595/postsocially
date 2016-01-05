@@ -1,0 +1,44 @@
+
+<%= form_for [@topic, @post], remote: true do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :Image %><br>
+      <%= f.file_field :image %>
+    </div>
+    <div class="field">
+    <%= f.label :Name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :Message %><br>
+    <%= f.text_area :message %>
+
+  </div>
+
+  <% if @tags %>
+  <% @tags.each do |tag| %>
+	<div>
+		<%= check_box_tag "post[tag_ids][]", tag.id, @post.tags.include?(tag) %>
+		<%= tag.name %>
+	</div>
+  <% end %>
+  <% end %>
+  <br><br>
+
+  <%= link_to 'Create Tag', tags_path %>
+    <br><br>
+  <%= f.submit %>
+
+<% end %>
+

@@ -1,0 +1,75 @@
+
+
+<script>
+
+  $(document).ready(function() {
+    <% if not current_user.posts.exists?(@posts) %>
+        $.ajax({
+          type: "POST",
+          url: '/posts/update_status',
+          data: {id: <%= @posts.id %>}
+        })
+    <% end %>
+  });
+
+</script>
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @posts.name %> (
+  <%= @posts.topic.name %> )
+</p>
+
+<%= image_tag @posts.image.url, size: '150x150' %>
+
+<p>
+  <strong>Author:</strong>
+  <%= @posts.user.email %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @posts.message %>
+</p>
+
+ <strong>Tags:</strong>
+<% @posts.tags.each do |tag| %>
+	<div>
+		<%= tag.name %> <br>
+	</div>
+ <% end %>
+<br>
+
+
+<strong>Ratings:  </strong>
+
+<%= @posts.ratings.average(:star).to_f.round(2) %>
+<br>
+<%= @posts.ratings.group(:star).count() %>
+<br><br>
+
+<%= form_for @posts, url: add_post_rate_path(@posts) do |f|  %>
+    <% (1..5).each do |rating| %>
+        <%= radio_button_tag "rate", rating %>
+        <%= rating %>
+
+    <% end %>
+    <br><br>
+    <%= f.submit('Rate') %>
+
+<% end %>
+<br><br>
+
+
+
+<%= link_to 'Comments - ', "#", id: "comments_link" %> ( <%= @posts.comments.count %> )<br><br>
+<section id = "comment_section">
+  <%= render @posts.comments %>
+</section>
+<br><br>
+<%= link_to 'Edit', edit_post_path(@posts) %> |
+<%= link_to 'Back', topic_posts_url(@posts.topic) %>
+
