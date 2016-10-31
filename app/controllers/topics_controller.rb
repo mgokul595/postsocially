@@ -1,6 +1,5 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
-  #skip_before_filter :verify_authenticity_token
 
   # GET /topics
   # GET /topics.json
