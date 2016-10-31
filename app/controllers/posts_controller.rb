@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 
   load_and_authorize_resource :except => [:user, :update_status, :add_rating]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :update_status, :add_rating]
-  #skip_before_action :verify_authenticity_token
   skip_before_action :authenticate_user!, :only => [:user]
 
 
